@@ -1,0 +1,4 @@
+include 'relson-core'
+include 'relson-server'
+include 'relson-servlets'
+include 'relson-examples'

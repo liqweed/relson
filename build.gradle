@@ -3,28 +3,29 @@ allprojects {
 	apply plugin: 'java'
 	apply plugin: 'maven'
 	
-	sourceCompatibility = 1.6
+	sourceCompatibility = 1.7
 
 	ext.versions = [
-			jackson: '2.2.0',
-			jetty: '9.0.2.v20130417'
+			guava: '16.0',
+			commonsLang: '3.2.1',
+			slf4j: '1.7.5',
+			joda: '2.3',
+			jackson: '2.3.0',
+			jetty: '9.1.1.v20140108',
+			metrics: '3.0.1'
 	]
 
 	dependencies {
-		compile 'org.slf4j:slf4j-api:1.7.5'
-
 		testCompile 'junit:junit:4.11'
 		testCompile 'org.mockito:mockito-core:1.9.5'
-		testCompile 'org.easytesting:fest-assert-core:2.0M10'
+		testCompile 'org.assertj:assertj-core:1.5.0'
+		testCompile 'org.assertj:assertj-joda-time:1.1.0'
+		testCompile 'org.assertj:assertj-guava:1.1.0'
+		testCompile 'com.jayway.awaitility:awaitility:1.4.0'
 	}
 
 	repositories {
 		maven { url 'http://jcenter.bintray.com' }
 		mavenCentral()
 	}
-}
-
-//noinspection GrUnresolvedAccess
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.6-rc-1'
 }

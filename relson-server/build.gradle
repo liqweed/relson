@@ -1,0 +1,11 @@
+dependencies {
+	compile project(':relson-core')
+
+	compile "org.slf4j:slf4j-api:$versions.slf4j"
+	compile 'commons-io:commons-io:2.4'
+
+	// JSON serialization
+	compile "com.fasterxml.jackson.core:jackson-databind:$versions.jackson"
+	compile "com.fasterxml.jackson.datatype:jackson-datatype-guava:$versions.jackson"
+
+}

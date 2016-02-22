@@ -1,5 +1,4 @@
 allprojects {
-	apply plugin: 'idea'
 	apply plugin: 'java'
 	apply plugin: 'maven'
 	apply plugin: 'jacoco'
@@ -8,16 +7,26 @@ allprojects {
 	targetCompatibility = 1.8
 
 	ext.versions = [
-			guava: '19.0',
+			guava      : '19.0',
 			commonsLang: '3.4',
-			slf4j: '1.7.16',
-			joda: '2.9.2',
-			jackson: '2.7.1',
-			jetty: '9.3.7.v20160115',
-			metrics: '3.1.0',
-			javaslang: '2.0.0-RC4'
+			slf4j      : '1.7.16',
+			joda       : '2.9.2',
+			jackson    : '2.7.1',
+			jetty      : '9.3.7.v20160115',
+			metrics    : '3.1.0',
+			javaslang  : '2.0.0-RC4'
 	]
 
+	jacoco {
+		toolVersion = '0.7.6.201602180812'
+	}
+
+	repositories {
+		jcenter()
+	}
+}
+
+subprojects {
 	dependencies {
 		testCompile 'junit:junit:4.11'
 		testCompile 'org.mockito:mockito-core:1.9.5'
@@ -26,13 +35,37 @@ allprojects {
 	}
 
 	jacocoTestReport {
-	    reports {
-	        xml.enabled = true
-	        html.enabled = true
-	    }
-	}
+		additionalSourceDirs = files(sourceSets.main.allSource.srcDirs)
+		sourceDirectories = files(sourceSets.main.allSource.srcDirs)
+		classDirectories = files(sourceSets.main.output)
 
-	repositories {
-		jcenter()
+		reports {
+			html.enabled = true
+			xml.enabled = true
+			csv.enabled = false
+		}
 	}
 }
+
+task jacocoRootReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
+    dependsOn = subprojects.test
+    additionalSourceDirs = files(subprojects.sourceSets.main.allSource.srcDirs)
+    sourceDirectories = files(subprojects.sourceSets.main.allSource.srcDirs)
+    classDirectories =  files(subprojects.sourceSets.main.output)
+    executionData = files(subprojects.jacocoTestReport.executionData)
+    reports {
+        html.enabled = true
+        xml.enabled = true
+        csv.enabled = false
+    }
+	onlyIf = {
+	        true
+	}
+	doFirst {
+		executionData = files(executionData.findAll {
+			it.exists()
+		})
+	}
+}
+
+tasks.check.dependsOn jacocoRootReport

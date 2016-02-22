@@ -1,3 +1,4 @@
+include 'relson-model'
 include 'relson-core'
 include 'relson-server'
 include 'relson-servlets'

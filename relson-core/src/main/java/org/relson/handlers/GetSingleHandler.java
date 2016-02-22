@@ -5,7 +5,9 @@
  */
 package org.relson.handlers;
 
+import com.google.common.base.Optional;
+
 public interface GetSingleHandler<K, E> extends ResourceHandler {
 
-	E get(K id);
+	Optional<E> get(K id);
 }

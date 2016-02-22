@@ -1,9 +1,9 @@
 /*
  User: Ophir
- Date: 04/05/13
- Time: 22:21
+ Date: 05/05/13
+ Time: 10:40
  */
-package org.relson;
+package org.relson.annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -16,6 +16,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 @Target({FIELD, METHOD})
 @Retention(RUNTIME)
-public @interface Relation {
+public @interface ResourceId {
 
 }

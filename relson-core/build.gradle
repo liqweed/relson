@@ -1,6 +1,9 @@
 dependencies {
+	compile project(':relson-model')
+	compile "ch.qos.logback:logback-classic:1.1.5"
+	compile "com.javaslang:javaslang:$versions.javaslang"
+
 	// General purpose libraries:
 	compile "com.google.guava:guava:$versions.guava"
-	compile "joda-time:joda-time:$versions.joda"
 }
 

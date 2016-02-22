@@ -7,7 +7,7 @@ package org.relson.examples.model;
 
 import com.google.common.collect.Lists;
 import java.util.List;
-import org.relson.ResourceId;
+import org.relson.annotations.ResourceId;
 
 public class Post {
 

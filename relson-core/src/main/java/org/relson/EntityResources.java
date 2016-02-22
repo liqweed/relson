@@ -5,17 +5,16 @@
  */
 package org.relson;
 
-import org.relson.handlers.FindHandler;
-import org.relson.handlers.GetSingleHandler;
-import org.relson.handlers.GetSomeHandler;
+import java.util.Collections;
+import java.util.Map;
+import org.relson.handlers.ResourceHandler;
+import org.relson.model.ResourceType;
 
 public class EntityResources {
 
 	private String pathPrefix;
 	private final Class<?> entityType;
-	private GetSingleHandler<?, ?> getSingleHandler;
-	private GetSomeHandler<?, ?> getSomeHandler;
-	private FindHandler<?> findHandler;
+	private Map<ResourceType, ResourceHandler> handlers = Collections.emptyMap();
 
 	public EntityResources(String pathPrefix, Class<?> entityType) {
 		this.entityType = entityType;

@@ -1,0 +1,5 @@
+dependencies {
+	// General purpose libraries:
+	compile "com.google.guava:guava:$versions.guava"
+}
+
